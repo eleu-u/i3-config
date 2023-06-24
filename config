@@ -1,13 +1,23 @@
 # super key
 set $mod Mod4
 
-font pango:monospace 8
+font pango:Terminus 8
+
+# change montir pos
+exec --no-startup-id xrandr --output HDMI-0 --primary --left-of DVI-D-0
 
 # startup apps
-exec --no-startup-id buckle -g 300 -s 10000 &
+exec --no-startup-id picom &
+
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id buckle -g 300 -s 10000 &
+
+exec --no-startup-id volctl
 exec --no-startup-id nm-applet
-exec --no-startup-id volumeicon
+
+exec --no-startup-id i3-msg "workspace 1:firefox; exec firefox"
+exec --no-startup-id i3-msg "workspace 2:web; exec discord"
+exec --no-startup-id i3-msg "workspace 2:web; exec spotify"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -21,6 +31,9 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+t exec st
+
+# open file manager
+bindsym $mod+y exec qtfm
 
 # kill focused window
 bindsym $mod+c kill
@@ -84,6 +97,13 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+# assign workspace startup monitor
+workspace $ws1 output HDMI-0
+workspace $ws2 output DVI-D-0
+workspace $ws3 output HDMI-0
+workspace $ws4 output HDMI-0
+workspace $ws5 output HDMI-0
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -107,6 +127,10 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# shorcuts to move windows between monitors
+bindsym $mod+Ctrl+Right move container to output right
+bindsym $mod+Ctrl+Left move container to output left
 
 # reload the configuration file
 bindsym $mod+Shift+r reload
