@@ -16,7 +16,7 @@ exec --no-startup-id volctl
 exec --no-startup-id nm-applet
 
 exec --no-startup-id i3-msg "workspace 1:firefox; exec firefox"
-exec --no-startup-id i3-msg "workspace 2:web; exec discord"
+exec --no-startup-id i3-msg "workspace 2:web; exec Discord"
 exec --no-startup-id i3-msg "workspace 2:web; exec spotify"
 
 # Use pactl to adjust volume in PulseAudio.
@@ -39,7 +39,7 @@ bindsym $mod+y exec qtfm
 bindsym $mod+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+s exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -68,7 +68,7 @@ bindsym $mod+v split v
 bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -131,6 +131,9 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # shorcuts to move windows between monitors
 bindsym $mod+Ctrl+Right move container to output right
 bindsym $mod+Ctrl+Left move container to output left
+
+# shortcut to hide all workspaces
+bindsym $mod+d focus output HDMI-0; workspace number 99; focus output DVI-D-0; workspace number 100
 
 # reload the configuration file
 bindsym $mod+Shift+r reload
